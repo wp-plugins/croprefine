@@ -15,13 +15,13 @@ Extends the WordPress Media Library to allow individual control over each media 
 
 **For those particular about their imagery...**
 
-WordPress's Media Library already gives authors strong, intuitive organization over their web site's images. But some users are a little more particular than others over the individual crop sizes of each media item. CropRefine is for the those keen-eyed, visual types who want something fast and fastidious. 
+WordPress's Media Library already gives authors strong, intuitive organization over their web site's images. But some users are a little more particular than others over the individual crop sizes of each media item. CropRefine is for the keen-eyed, visual types who want something fast and fastidious. 
 
 * CropRefine provides quick-links from the Media Library to refine each item.
 * A full catalog of existing crops and sizes are made available for refinement.
 * If you prefer a different/better thumbnail but want to leave the other sizes untouched, CropRefine gives you that level of granularity over your imagery.
 * Packaged with cropper.js, adjusting a crop is a smooth, draggable, precise refinement experience.
-* Iterative backups are stored along side each adjustment, so nothing is ever lost&mdash;only gained!
+* Iterative backups are stored alongside each adjustment, so nothing is ever lost&mdash;only gained!
 * If a re-crop just won't achieve the results you're after, a quick-upload tool is also offered for each media item size, so that you can replace that (and only that) size.
 * No additional database is needed, no exhaustive setup process, no hidden license costs.
 
