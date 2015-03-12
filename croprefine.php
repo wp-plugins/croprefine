@@ -3,11 +3,11 @@
 Plugin Name: CropRefine
 Plugin URI: http://wordpress.org/plugins/croprefine/
 Description: Giving you greater control over how each of your media item sizes are cropped.
-Version: 0.9
+Version: 0.9.1
 Author: ERA404 Creative Group, Inc.
 Author URI: http://www.era404.com
 License: GPLv2 or later.
-Copyright 2015  era404 Creative Group, Inc.
+Copyright 2015 ERA404 Creative Group, Inc.
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License, version 2, as 
@@ -22,7 +22,6 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
-
 
 /***********************************************************************************
 *     Globals
@@ -292,7 +291,7 @@ function returnerr($err,$die=true){
 }
 
 
-if(!function_exists("myprint_r")){	function myprint_r($in) { echo "<pre>"; print_r($in); echo "</pre>"; return; }}
+//if(!function_exists("myprint_r")){	function myprint_r($in) { echo "<pre>"; print_r($in); echo "</pre>"; return; }}
 
 /**************************************************************************************************
 *	File Handling
@@ -377,6 +376,4 @@ function croprefine_replaceimage(){
    	echo "<script type='text/javascript'>window.location='{$pluginurl}';</script>";
    	return;
 }
-
-
 ?>

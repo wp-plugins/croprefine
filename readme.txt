@@ -1,5 +1,5 @@
 === CropRefine ===
-Contributors: ERA404
+Contributors: ERA404 Creative Group, Inc.
 Requires at least: 3.2.1
 Tested up to: 4.4.1
 Stable tag: trunk
@@ -47,6 +47,8 @@ Yes. We plan to add an iterative rollback feature to restore previous crops and 
 If you wish. Sure.
 
 == Changelog ==
+= 0.9.1 =
+* Clean/removed debugging operations to prepare for official release.
 
 = 0.9 =
 * Plugin-out only in beta, currently. Standby for official release.
