@@ -1,5 +1,4 @@
 (function (factory) {
-	console.log("cropper/cropper.js Loaded");
   if (typeof define === "function" && define.amd) {
     // AMD. Register as anonymous module.
     define(["jquery"], factory);

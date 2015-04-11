@@ -3,7 +3,7 @@
 Plugin Name: CropRefine
 Plugin URI: http://wordpress.org/plugins/croprefine/
 Description: Giving you greater control over how each of your media item sizes are cropped.
-Version: 0.9.1
+Version: 0.9.2
 Author: ERA404
 Author URI: http://www.era404.com
 License: GPLv2 or later.
@@ -172,7 +172,8 @@ function croprefine_plugin_options() {
 		<a href='http://www.era404.com' title='ERA404 Creative Group, Inc.' target='_blank'>www.era404.com</a>. Thanks for using CropRefine.
 	</div>
 PAYPAL;
-	
+	$image_sizes = get_image_sizes();
+	echo "<pre>"; print_r($image_sizes);
 }
 
 /**************************************************************************************************
@@ -215,22 +216,63 @@ function croprefine_getimage() {
 	//open this uploads directory and find matches
 	$imagename = str_replace($ext,"",basename($imagepath));
 	$regex = '/^' . $imagename . "\-([\d]+)x([\d]+)" . $ext . '$/';
+	$imgs = array();
 	if ($handle = opendir($path))
-	{	$sizes = array();
-		while (false !== ($file = readdir($handle)))
+	{	while (false !== ($file = readdir($handle)))
 		{	preg_match($regex, $file, $match);
-			if(!empty($match)&& count($match)==3){
-				$sizes[$file] = $match;
-			}
+			if(!empty($match)&& count($match)==3) $imgs[$file] = $match;
 		}
-		closedir($handle);
-		ksort($sizes);
+		closedir($handle); ksort($imgs);
 	}
-	die(json_encode(array(	"sizes"=> array_values($sizes),
+	if(!empty($imgs)) $imgs = determineSizes($imgs);
+
+	die(json_encode(array(	"sizes"=> array_values($imgs),
 							"path" => $path,
 							"url"  => $url,
 							"image"=> $imageurl)));
 }
+//https://codex.wordpress.org/Function_Reference/get_intermediate_image_sizes
+function get_sizes() {
+        global $_wp_additional_image_sizes; $sizes = array();
+        $get_intermediate_image_sizes = get_intermediate_image_sizes();
+        // Create the full array with sizes
+        foreach( $get_intermediate_image_sizes as $_size ) {
+                if ( in_array( $_size, array( 'thumbnail', 'medium', 'large' ) ) ) {
+                		$w = get_option( $_size . '_size_w' );
+                		$h = get_option( $_size . '_size_h' );
+                		$c = (bool) get_option( $_size . '_crop' );
+						
+                } elseif ( isset( $_wp_additional_image_sizes[ $_size ] ) ) {
+                		$w = $_wp_additional_image_sizes[ $_size ]['width'];
+                		$h = $_wp_additional_image_sizes[ $_size ]['height'];
+                		$c = $_wp_additional_image_sizes[ $_size ]['crop'];
+                }
+                if($c){ $sizes[$w][$h]=$_size; }
+                else { 
+                	$sizes['w'][$w] = $_size;
+                	$sizes['h'][$h] = $_size;
+                }
+        }
+        if(!empty($sizes)) return $sizes;
+        return(array());
+}
+function determineSizes($imgs){
+	$sizes = get_sizes(); //print_r($sizes);
+	foreach($imgs as $k=>$img){
+		$w = $img[1]; $h = $img[2];
+		if(isset($sizes[$w][$h])) { $imgs[$k][3] = $sizes[$w][$h]; }
+		else { 	$longest = ($w >= $h ? 'w' : 'h');
+			$imgs[$k][3] = (isset($sizes[$longest][$$longest]) ? $sizes[$longest][$$longest] : "unknown");
+		}
+	}
+	
+	return $imgs;
+	
+}
+
+/**************************************************************************************************
+*	Crop Image
+**************************************************************************************************/
 function croprefine_cropimage(){
 	header('Content-type: application/json');
 	$uploads = wp_upload_dir();
@@ -294,7 +336,7 @@ function returnerr($err,$die=true){
 //if(!function_exists("myprint_r")){	function myprint_r($in) { echo "<pre>"; print_r($in); echo "</pre>"; return; }}
 
 /**************************************************************************************************
-*	File Handling
+*	Replace Image
 **************************************************************************************************/
 function croprefine_replaceimage(){
 	$newimage = $_FILES['newimage'];

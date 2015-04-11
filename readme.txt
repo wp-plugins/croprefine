@@ -47,6 +47,9 @@ Yes. We plan to add an iterative rollback feature to restore previous crops and 
 If you wish. Sure.
 
 == Changelog ==
+= 0.9.2 =
+* Added support for registered image sizes by name.
+
 = 0.9.1 =
 * Clean/removed debugging operations to prepare for official release.
 
