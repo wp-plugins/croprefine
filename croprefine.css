@@ -30,7 +30,9 @@
 	cursor: pointer;
 	float: none;
 }
-
+th.actions {
+	width: 150px;
+}
 div#popover-preview {
 position: absolute;
 	left: 10px;

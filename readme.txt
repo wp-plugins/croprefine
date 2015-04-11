@@ -48,6 +48,9 @@ Yes. We plan to add an iterative rollback feature to restore previous crops and 
 If you wish. Sure.
 
 == Changelog ==
+= 0.9.4
+* Adjusted toolbox styles for narrower environments.
+
 = 0.9.3
 * Added donate link ;)
 
