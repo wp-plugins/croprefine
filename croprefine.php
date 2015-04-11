@@ -3,7 +3,7 @@
 Plugin Name: CropRefine
 Plugin URI: http://wordpress.org/plugins/croprefine/
 Description: Giving you greater control over how each of your media item sizes are cropped.
-Version: 0.9.2
+Version: 0.9.3
 Author: ERA404
 Author URI: http://www.era404.com
 License: GPLv2 or later.

@@ -1,5 +1,6 @@
 === CropRefine ===
 Contributors: ERA404
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=FPL96ZDKPHR72
 Requires at least: 3.2.1
 Tested up to: 4.1.1
 Stable tag: trunk
@@ -47,6 +48,9 @@ Yes. We plan to add an iterative rollback feature to restore previous crops and 
 If you wish. Sure.
 
 == Changelog ==
+= 0.9.3
+* Added donate link ;)
+
 = 0.9.2 =
 * Added support for registered image sizes by name.
 
